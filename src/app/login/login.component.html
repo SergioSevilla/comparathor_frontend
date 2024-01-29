@@ -1,0 +1,21 @@
+<div class="login">
+    <mat-card class="card">
+        <form class="login-form" [formGroup]="loginForm" (submit)="submitLogin()">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput  type="email" formControlName="email" placeholder="Ejemplo: email@gmail.com" [ngClass]="{ 'show-invalid': loginForm.controls.email.errors }">
+                <mat-error *ngIf="loginForm.controls.email?.errors">Formato de correo incorrecto</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" [ngClass]="{ 'show-invalid': loginForm.controls.password.errors }">
+            </mat-form-field>
+
+            <p *ngIf="displayError" style="color: red">Error. Revise las credenciales</p>
+
+            <button mat-raised-button class="boton" color="primary" type="submit" value="Enviar Login" [disabled]="loginForm.invalid">Log In</button>
+        </form>   
+    </mat-card>
+</div>
+

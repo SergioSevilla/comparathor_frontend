@@ -1,0 +1,11 @@
+
+<mat-toolbar class="title-toolbar" color="primary"> 
+    <mat-toolbar-row> 
+      <span>Comparathor</span> 
+      <span class="spacer"></span>
+      <button *ngIf="!isAuthenticated" class="boton" mat-raised-button routerLink="/login">Log in</button>
+      <button *ngIf="!isAuthenticated" class="boton" mat-raised-button color="accent" routerLink="/signin">Sign Up</button>
+      <mat-icon *ngIf="isAuthenticated" class="mat-icon-rtl-mirror">face</mat-icon>
+      <button *ngIf="isAuthenticated" class="boton" mat-raised-button color="accent" routerLink="/login" (click)="logout()">Log Out</button>
+    </mat-toolbar-row> 
+</mat-toolbar> 

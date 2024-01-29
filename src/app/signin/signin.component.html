@@ -1,0 +1,29 @@
+<div class="signin">
+    <mat-card class="card">
+        <form class="signin-form" [formGroup]="signinForm" (submit)="submitSignin()">
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput  type="text" formControlName="name" placeholder="Ejemplo: Nombre Apellido" [ngClass]="{ 'show-invalid': signinForm.controls.name.errors }">
+                <mat-error *ngIf="signinForm.controls.name?.errors">Formato de nombre incorrecto</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Dirección</mat-label>
+                <input matInput  type="text" formControlName="address" placeholder="Ejemplo: Calle de Ejemplo" [ngClass]="{ 'show-invalid': signinForm.controls.address.errors }">
+                <mat-error *ngIf="signinForm.controls.address?.errors">Formato de Dirección incorrecto</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput  type="email" formControlName="email" placeholder="Ejemplo: email@gmail.com" [ngClass]="{ 'show-invalid': signinForm.controls.email.errors }">
+                <mat-error *ngIf="signinForm.controls.email?.errors">Formato de correo incorrecto</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" [ngClass]="{ 'show-invalid': signinForm.controls.password.errors }">
+            </mat-form-field>
+
+
+            <button mat-raised-button class="boton" color="primary" type="submit" value="Crear" [disabled]="signinForm.invalid">Log In</button>
+        </form>   
+    </mat-card>
+</div>
+
