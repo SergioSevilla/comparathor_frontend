@@ -19,6 +19,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ComparativasComponent } from './comparativas/comparativas.component';
 import { SignupSuccessDialogComponent } from './dialogs/signup-success-dialog/signup-success-dialog.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { SignupSuccessDialogComponent } from './dialogs/signup-success-dialog/si
     MatInputModule,
     MatCardModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [
     provideClientHydration(),

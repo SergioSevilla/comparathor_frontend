@@ -1,7 +1,7 @@
 
 <mat-toolbar class="title-toolbar" color="primary"> 
     <mat-toolbar-row> 
-      <mat-icon *ngIf="isAuthenticated" class="icon-sidenav">reorder</mat-icon>
+      <mat-icon *ngIf="isAuthenticated" class="icon-sidenav" (click)="opened=!opened">menu</mat-icon>
       <span>Comparathor</span> 
       <span class="spacer"></span>
       <button *ngIf="!isAuthenticated" class="boton" mat-raised-button routerLink="/login">Log in</button>
@@ -12,4 +12,57 @@
       </div>   
       <button *ngIf="isAuthenticated" class="boton" mat-raised-button color="accent" routerLink="/login" (click)="logout()">Log Out</button>
     </mat-toolbar-row> 
-</mat-toolbar> 
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="matsidenav-container" [(opened)] = "opened" mode="side">
+      <div class="sidenav">
+        <mat-nav-list>
+          <mat-list-item (click)="showMenuItems = !showMenuItems" class="parent">
+            <mat-icon mat-list-icon>inventory_2</mat-icon>
+            <span class="full-width" >PRODUCTOS</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showMenuItems}">expand_more</mat-icon>
+          </mat-list-item>
+          <div class="submenu" [ngClass]="{'expanded' : showMenuItems}" *ngIf="showMenuItems" >
+            <a mat-list-item href="...">Buscar Productos</a>
+            <a mat-list-item href="...">Mis Productos</a>
+            <a mat-list-item href="...">Añadir Producto</a>
+          </div>
+        </mat-nav-list>
+        <mat-nav-list>
+          <mat-list-item (click)="showMenuComparisons = !showMenuComparisons" class="parent">
+            <mat-icon mat-list-icon>screen_rotation_alt</mat-icon>
+            <span class="full-width" >COMPARATIVAS</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showMenuComparisons}">expand_more</mat-icon>
+          </mat-list-item>
+          <div class="submenu" [ngClass]="{'expanded' : showMenuComparisons}" *ngIf="showMenuComparisons" >
+            <a mat-list-item href="...">Buscar Comparativas</a>
+            <a mat-list-item href="...">Mis Comparativas</a>
+            <a mat-list-item href="...">Crear Comparativa</a>
+          </div>
+        </mat-nav-list>
+        <mat-nav-list>
+          <mat-list-item (click)="showMenuSettings = !showMenuSettings" class="parent">
+            <mat-icon mat-list-icon>settings</mat-icon>
+            <span class="full-width" >AJUSTES</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showMenuSettings}">expand_more</mat-icon>
+          </mat-list-item>
+          <div class="submenu" [ngClass]="{'expanded' : showMenuSettings}" *ngIf="showMenuSettings" >
+            <a mat-list-item href="...">Mi Cuenta</a>
+          </div>
+        </mat-nav-list>
+        <mat-nav-list>
+          <mat-list-item (click)="showMenuAdmin = !showMenuAdmin" class="parent">
+            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>
+            <span class="full-width" >ADMINISTRACIÓN</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showMenuAdmin}">expand_more</mat-icon>
+          </mat-list-item>
+          <div class="submenu" [ngClass]="{'expanded' : showMenuAdmin}" *ngIf="showMenuAdmin" >
+            <a mat-list-item href="...">Validaciones</a>
+            <a mat-list-item href="...">Usuarios</a>
+            <a mat-list-item href="...">Proveedores</a>
+          </div>
+        </mat-nav-list>
+        <mat-icon (click)="opened=!opened">arrow_back</mat-icon>
+      </div>
+  </mat-sidenav>
+</mat-sidenav-container>

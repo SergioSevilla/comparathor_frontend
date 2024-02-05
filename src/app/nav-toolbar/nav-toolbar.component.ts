@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../entities/user';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-nav-toolbar',
@@ -15,6 +16,11 @@ export class NavToolbarComponent {
   private authSubscription: Subscription;
   user: User;
   userName : string = '';
+  opened = false;
+  showMenuItems : boolean = false;
+  showMenuComparisons : boolean = false;
+  showMenuSettings : boolean = false;
+  showMenuAdmin: boolean = false;
 
   constructor (private authService:AuthService)
   {
