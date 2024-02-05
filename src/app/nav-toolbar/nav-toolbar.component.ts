@@ -30,7 +30,7 @@ export class NavToolbarComponent {
   }
 
   ngOnInit(){
-      this.getUSers().subscribe(res => {this.user = res[0]})
+      this.getUSers().subscribe(res => {this.user = res[0];})
   }
 
   logout() {

@@ -1,11 +1,12 @@
 
 <mat-toolbar class="title-toolbar" color="primary"> 
     <mat-toolbar-row> 
+      <mat-icon *ngIf="isAuthenticated" class="icon-sidenav">reorder</mat-icon>
       <span>Comparathor</span> 
       <span class="spacer"></span>
       <button *ngIf="!isAuthenticated" class="boton" mat-raised-button routerLink="/login">Log in</button>
       <button *ngIf="!isAuthenticated" class="boton" mat-raised-button color="accent" routerLink="/signin">Sign Up</button>
-      <div class = "usuario" *ngIf="isAuthenticated">
+      <div class = "usuario" *ngIf="isAuthenticated   && user && user.nombre !== undefined">
         <mat-icon *ngIf="isAuthenticated" class="mat-icon-rtl-mirror">face</mat-icon>
         <small>{{ user.nombre }}</small>
       </div>   
