@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from '../services/usuario.service';
+import { matchValidator } from './signin.validator';
+import { SignupSuccessDialogComponent } from '../dialogs/signup-success-dialog/signup-success-dialog.component';
 
 @Component({
   selector: 'app-signin',
@@ -8,42 +11,58 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrl: './signin.component.scss'
 })
 
+
+
 export class SigninComponent {
 
-  user = { email: '', nombre: '', password : '', direccion : '' };
+  user = { email: '', nombre: '', password: '', direccion: '' };
+
+  
 
 
-  signinForm: FormGroup;
+  signinForm: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    address: new FormControl(''),
+    password: new FormControl('', [Validators.required, matchValidator('confirmPassword', true)]),
+    confirmPassword: new FormControl('', [Validators.required, matchValidator('password')])
+  });
 
-  constructor(private usuarioService: UsuarioService) {
-    this.signinForm = new FormGroup({
-      name: new FormControl('',Validators.required),
-      email: new FormControl('',[Validators.required, Validators.email]),
-      address : new FormControl(''),
-      password: new FormControl('',Validators.required)
-    });
+  constructor(private usuarioService: UsuarioService, public dialog: MatDialog) {
   }
 
-  submitSignin(){
-    if (this.signinForm.valid)
-    {
-      this.user.nombre = this.signinForm.controls.name.value;
-      this.user.email = this.signinForm.controls.email.value;
-      this.user.password = this.signinForm.controls.password.value;
-      this.user.password = this.signinForm.controls.password.value;
+
+  
+  submitSignin() {
+
+    if (this.signinForm.valid) {
+      this.user = { ...this.signinForm.value };
+      console.log(this.user);
       this.usuarioService.createUser(this.user)
-      .subscribe(
-        (response) => {
-          // Manejar la respuesta exitosa (código 201) 
-          console.log('Usuario creado exitosamente:', response);
-        },
-        (error) => {
-          // Manejar errores aquí, se pueden haber lanzado desde el servicio
-          console.error('Error al crear usuario:', error);
-        }
-      );
+        .subscribe(
+          (response) => {
+            this.openSuccessDialog();
+          },
+          (error) => {
+            console.error('Error al crear usuario:', error);
+          }
+        );
     }
   }
 
+  openSuccessDialog(): void {
+    const dialogRef = this.dialog.open(SignupSuccessDialogComponent, {
+      width: '300px',
+      data: {}
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      
+      console.log('Dialog cerrado', result);
+    });
+  }
 
 }
+
+
+

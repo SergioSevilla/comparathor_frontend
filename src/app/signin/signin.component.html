@@ -20,9 +20,13 @@
                 <mat-label>Password</mat-label>
                 <input matInput type="password" formControlName="password" [ngClass]="{ 'show-invalid': signinForm.controls.password.errors }">
             </mat-form-field>
+            <mat-form-field>
+                <mat-label>Confirmar Password</mat-label>
+                <input matInput type="password" formControlName="confirmPassword" [ngClass]="{ 'show-invalid': signinForm.controls.confirmPassword.errors  }">
+                <mat-error *ngIf="signinForm.controls.confirmPassword?.errors">Las contraseñas no coinciden</mat-error>
+            </mat-form-field>
 
-
-            <button mat-raised-button class="boton" color="primary" type="submit" value="Crear" [disabled]="signinForm.invalid">Log In</button>
+            <button mat-raised-button class="boton" color="primary" type="submit" value="Crear" [disabled]="signinForm.invalid">Sign In</button>
         </form>   
     </mat-card>
 </div>

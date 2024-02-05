@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { User } from '../entities/user';
 
 @Component({
   selector: 'app-nav-toolbar',
@@ -12,6 +13,8 @@ export class NavToolbarComponent {
 
   isAuthenticated: boolean = false;
   private authSubscription: Subscription;
+  user: User;
+  userName : string = '';
 
   constructor (private authService:AuthService)
   {
@@ -20,6 +23,14 @@ export class NavToolbarComponent {
         this.isAuthenticated = isAuthenticated;
       }
     );
+  }
+
+  public getUSers(): Observable<User[]> {
+    return this.authService.users.asObservable();
+  }
+
+  ngOnInit(){
+      this.getUSers().subscribe(res => {this.user = res[0]})
   }
 
   logout() {
