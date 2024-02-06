@@ -21,6 +21,8 @@ import { ComparativasComponent } from './comparativas/comparativas.component';
 import { SignupSuccessDialogComponent } from './dialogs/signup-success-dialog/signup-success-dialog.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { BuscarProductoComponent } from './productos/buscar/buscar-productocomponent';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MatListModule} from '@angular/material/list';
     LoginComponent,
     SigninComponent,
     ComparativasComponent,
-    SignupSuccessDialogComponent
+    SignupSuccessDialogComponent,
+    BuscarProductoComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import {MatListModule} from '@angular/material/list';
     HttpClientModule,
     MatDialogModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTreeModule
   ],
   providers: [
     provideClientHydration(),
