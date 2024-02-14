@@ -36,7 +36,10 @@ export class SigninComponent {
   submitSignin() {
 
     if (this.signinForm.valid) {
-      this.user = { ...this.signinForm.value };
+      this.user.direccion = this.signinForm.controls['address'].value;
+      this.user.nombre = this.signinForm.controls['name'].value;
+      this.user.password = this.signinForm.controls['password'].value;
+      this.user.email = this.signinForm.controls['email'].value;
       console.log(this.user);
       this.usuarioService.createUser(this.user)
         .subscribe(

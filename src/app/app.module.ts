@@ -23,6 +23,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { BuscarProductoComponent } from './productos/buscar/buscar-productocomponent';
 import { MatTreeModule } from '@angular/material/tree';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import { WelcomeComponent } from './welcome/welcome.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,7 @@ import { MatTreeModule } from '@angular/material/tree';
     ComparativasComponent,
     SignupSuccessDialogComponent,
     BuscarProductoComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,11 @@ import { MatTreeModule } from '@angular/material/tree';
     MatDialogModule,
     MatSidenavModule,
     MatListModule,
-    MatTreeModule
+    MatTreeModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   providers: [
     provideClientHydration(),
