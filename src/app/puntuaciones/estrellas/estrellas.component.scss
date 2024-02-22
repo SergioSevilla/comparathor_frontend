@@ -1,0 +1,18 @@
+.stars{
+  display: flex;
+  flex-direction: row;
+}
+
+  
+  .star mat-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .gold-icon {
+    color: orange;
+  }
+
+  .gray-icon {
+    color: gray;
+  }

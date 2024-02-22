@@ -22,6 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Obtener el token de localStorage
+    
     const token = localStorage.getItem('token');
 
     // Clonar la solicitud y agregar el encabezado de autorización con el token JWT

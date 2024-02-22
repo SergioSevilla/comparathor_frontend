@@ -1,0 +1,120 @@
+
+.detalle-producto-container {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 20px;
+  }
+
+  .comentarios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .comentario{
+    margin: 10px;
+  }
+
+  .precios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .precio{
+    margin: 10px;
+  }
+
+  .add-tab-button{
+    margin-left: 30px;
+    margin-bottom: 3%;
+  }
+  
+  .producto-card {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .imagen-container {
+    flex: 1;
+  }
+  
+  .imagen-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .datos-container {
+    flex: 2;
+    margin-left: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+
+.atributos-container {
+  display:flex;
+  direction: row;
+    margin-top: 20px;
+    text-align: left; 
+    margin-left: 50px; 
+  }
+.puntuacion-media {
+  margin-top: 30px;
+  margin-left:50px;
+}
+  .atributo {
+    margin-bottom: 5px;
+  }
+  
+  .atributo p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .tab-comentarios-precios {
+    margin-top: 15px;
+    width: 70%;
+  }
+
+  .gold-icon {
+    color: orange;
+    transform: scale(2);
+    margin-right:16px;
+  }
+
+  .gray-icon {
+    color: gray;
+    transform: scale(1.5);
+    margin-right:16px;
+  }
+  
+  .stars-media{
+    display:flex;
+    direction: row;
+  }
+
+  .text-puntuacion-media{
+    font-size: 10px;
+    color: gray;
+  }

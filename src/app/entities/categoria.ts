@@ -1,7 +1,7 @@
 export class Categoria {
     id: number;
     nombre: string;
-    parentId: number;
+    parentId: number | null;
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
@@ -9,7 +9,7 @@ export class Categoria {
 
 costructor (    id: number,
     nombre: string,
-    parentId: number,
+    parentId: number | null,
     created_at: string,
     updated_at: string,
     deleted_at: string | null)

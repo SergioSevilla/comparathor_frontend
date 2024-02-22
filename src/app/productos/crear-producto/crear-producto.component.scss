@@ -1,0 +1,172 @@
+.crear-categoria {
+    margin: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  mat-form-field {
+    width: 100%;
+}
+
+.productos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; // Para distribuir el espacio entre las tarjetas
+  padding: 20px;
+}
+
+mat-card {
+  width: calc(33.33% - 20px); // Tamaño de cada tarjeta, puedes ajustar según tu preferencia
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra para resaltar las tarjetas
+  transition: box-shadow 0.3s ease; // Efecto de transición suave para la sombra
+}
+
+mat-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Aumentar la sombra al pasar el ratón
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px; // Ajustar el relleno del encabezado de la tarjeta
+}
+
+mat-card-title {
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+mat-card-content {
+  padding: 8px 16px; // Ajustar el relleno del contenido de la tarjeta
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end; // Alinear los botones al final de la tarjeta
+  padding: 8px 16px; // Ajustar el relleno de las acciones de la tarjeta
+}
+
+.imagen_tarjeta{
+  margin-left: auto; // Coloca la imagen al final del contenedor
+  height: auto;
+  margin-right: 10px; // Espacio entre la imagen y el título
+}
+
+// Media query para dispositivos más pequeños
+@media (max-width: 768px) {
+  .productos-container {
+    justify-content: center; // Centrar las tarjetas en dispositivos pequeños
+  }
+
+  mat-card {
+    width: calc(50% - 20px); // Dos tarjetas por fila en dispositivos pequeños
+  }
+}
+
+// Media query para dispositivos aún más pequeños
+@media (max-width: 480px) {
+  mat-card {
+    width: calc(100% - 20px); // Una tarjeta por fila en dispositivos muy pequeños
+  }
+}
+
+.example-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 40px;
+}
+
+/*
+ * Padding for leaf nodes.
+ * Leaf nodes need to have padding so as to align with other non-leaf nodes
+ * under the same parent.
+ */
+.example-tree div[role=group] > .mat-tree-node {
+  padding-left: 40px;
+}
+
+.bfab{
+  margin-left:5px;
+  margin-right:10px;
+}
+
+.input-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.lista-atributos{
+  width: 500px;
+}
+
+.example-tree-invisible {
+    display: none;
+  }
+   
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+  .drop-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  input.mat-input {
+    height: 36px; // Ajusta este valor según tu preferencia
+  }
+
+
+  
+.dragarea {
+    font-size: 1.5rem;
+    border: 3px solid #bbb;
+    padding: 1.5rem;
+    background-color: #fff;
+    color: #bbb;
+    height: 100px;
+}
+
+.droparea {
+  font-size: 1.5rem;
+  border: 3px dashed #bbb;
+  padding: 1.5rem;
+  background-color: #eff;
+  color: #aaa;
+  height: 100px;
+}
+
+h2 {
+  color: #B53F51;
+}
+
+.crear-producto {
+  margin-left:20%;
+  margin-right:20%;
+}
+
+.subir-foto{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.listar-atributos
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.imgSrc{
+  width: 200px;
+  height: 200px;
+}

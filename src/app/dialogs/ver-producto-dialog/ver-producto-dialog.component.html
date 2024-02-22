@@ -1,0 +1,23 @@
+<div class="producto-card">
+    <div class="header-container">
+      <div class="imagen-container">
+        <img [src]="producto.fotoBlob" alt="Imagen del producto">
+      </div>
+      <div class="datos-container">
+        <h2>{{ producto.nombre }}</h2>
+        <p><strong>Estado:</strong> {{ producto.estadoNombre }}</p>
+        <p><strong>Categoría:</strong> {{ producto.categoriaNombre }}</p>
+      </div>
+    </div>
+    <div class="atributos-container">
+      <div class="atributos-valores">
+        <h3>Atributos:</h3>
+        <div *ngFor="let atributo of atributosValores" class="atributo">
+          <p><strong>{{ atributo.nombreAtributo }}:</strong> {{ atributo.valor }}</p>
+        </div>
+      </div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+</div>

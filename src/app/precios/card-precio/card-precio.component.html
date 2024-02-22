@@ -1,0 +1,13 @@
+<div class="card-precio">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <img  mat-card-md-image [src]="pathToImg">
+          </mat-card-title>
+          <mat-card-subtitle><a [href]="url"></a></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ precio | currency: 'EUR' }}</p>
+        </mat-card-content>
+      </mat-card>
+</div>

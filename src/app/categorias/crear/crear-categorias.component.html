@@ -1,0 +1,78 @@
+<div class="crear-categoria">
+  <mat-card class="arbol-categoria">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <mat-checkbox [checked]="node === selectedNode" (change)="onNodeSelected(node)">
+          {{ node.nombre }}
+        </mat-checkbox>
+        <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
+      </mat-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+          <mat-form-field>
+            <input matInput #itemValue placeholder="Nueva Categoría...">
+          </mat-form-field>
+          <button mat-mini-fab color="primary" class="bfab" (click)="saveNode(node, itemValue.value)" aria-label="Guardar nueva categoría en el sistema" >
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" class="bfab" (click)="discardNode(node)" aria-label="Descartar cambios">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </mat-tree-node>
+      <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+          <div class="mat-tree-node">
+            <button mat-icon-button matTreeNodeToggle
+                    [attr.aria-label]="'Toggle ' + node.nombre">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+  
+            <mat-checkbox [checked]="node === selectedNode" (change)="onNodeSelected(node)">
+              {{ node.nombre }}
+            </mat-checkbox>
+            <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
+          </div>
+          <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+              role="group">
+            <ng-container matTreeNodeOutlet></ng-container>
+        </div>
+      </mat-nested-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+          <mat-form-field>
+            <input matInput #itemValue placeholder="Nueva Categoría...">
+          </mat-form-field>
+          <button mat-mini-fab color="primary" class="bfab" (click)="saveNode(node, itemValue.value)" aria-label="Guardar nueva categoría en el sistema" >
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" class="bfab" (click)="discardNode(node)" aria-label="Descartar cambios">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </mat-tree-node>
+    </mat-tree>
+  </mat-card>
+  <mat-card *ngIf="selectedNode != null" class="lista-atributos">
+    <div mat-subheader>Atributos de : {{ selectedNode.nombre }}</div>
+    <mat-list role="list">
+      @for (atributo of atributos; track atributo) {
+      <mat-list-item role="listitem">{{ atributo.nombre }}</mat-list-item>
+      }
+      <mat-list-item role="listitem" *ngIf="!newattrshow">
+        <button mat-mini-fab color="primary" aria-label="Añadir nuevo atributo" (click)="changeShowAttr()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="newattrshow" role="listitem" class="input-list">
+        <mat-form-field>
+          <input matInput #attrValue placeholder="Nuevo Atributo..">
+        </mat-form-field>
+        <button mat-mini-fab color="primary" class="bfab"  aria-label="Guardar nueva categoría en el sistema" (click)="saveAttr(attrValue.value)">
+          <mat-icon>save</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" class="bfab"  aria-label="Descartar cambios" (click)="discardAttr()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
+

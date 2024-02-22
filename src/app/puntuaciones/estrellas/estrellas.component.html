@@ -1,0 +1,8 @@
+<div class="stars">
+
+    <div *ngFor="let star of stars">
+        <mat-icon *ngIf="star.id<=puntuacion" class="gold-icon">star</mat-icon>
+        <mat-icon *ngIf="star.id>puntuacion" class="gray-icon">star</mat-icon>
+    </div>
+
+</div>

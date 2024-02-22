@@ -1,0 +1,75 @@
+<div class="crear-producto">
+  <div class="seleccion-categoria">
+    <h2>Seleccione categoría</h2>  
+    <mat-form-field>
+        <input type="text"
+       placeholder="{{getSelectedItems()}}"
+       aria-label="Number"
+       matInput
+       [matAutocomplete]="auto">
+       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option disabled>Selecciona una Categoría</mat-option>
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+            <mat-checkbox *ngIf="node.hasAtributos" [checked]="node === selectedNode" class="checklist-leaf-node" (change)="onNodeSelected(node)">
+              {{ node.nombre }}
+            </mat-checkbox>
+            <div *ngIf="!node.hasAtributos">{{ node.nombre }}</div>
+          </mat-tree-node>
+          <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+            <div class="mat-tree-node">
+              <button mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.nombre">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+    
+              <mat-checkbox *ngIf="node.hasAtributos" [checked]="node === selectedNode" class="checklist-leaf-node" (change)="onNodeSelected(node)">
+                {{ node.nombre }}
+              </mat-checkbox>
+              <div *ngIf="!node.hasAtributos">{{ node.nombre }}</div>
+            </div>
+            <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+                role="group">
+              <ng-container matTreeNodeOutlet></ng-container>
+          </div>
+        </mat-nested-tree-node>
+      </mat-tree>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  
+  <div *ngIf="showForm">
+    <h2>Cumplimente el nombre del producto </h2>  
+    <form [formGroup]="newProductForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <label>Nombre del Producto:</label>
+        <input matInput type="text" id="productName" formControlName="productName">
+      </mat-form-field>
+      <h2>Cumplimente los atributos </h2>  
+      <div class="listar-atributos" formArrayName="attributes">
+        <div *ngFor="let atributo of atributos; let i = index">
+          <mat-form-field>
+            <label>{{atributo.nombre}}</label>
+            <input matInput type="text" [formControlName]="i">
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <h2>Incluya una foto del producto</h2>
+      <div class="subir-foto">
+        <div >
+          <input type="file" id="photo" (change)="handleFileInput($event)">
+          <div draggable="true" ngClass="{{dragAreaClass}}">
+            Arrastra y suelta la imagen aquí
+          </div>
+        </div>
+        <img [src]="imgSrc" class="imgSrc"> 
+      </div>
+
+      <button mat-raised-button class="boton" color="primary" type="submit" value="Crear" [disabled]="newProductForm.invalid">Guardar Producto</button>
+    </form>
+  </div>
+</div>
+

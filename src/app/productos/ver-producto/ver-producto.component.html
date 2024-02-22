@@ -1,0 +1,59 @@
+<div class="detalle-producto-container">
+    <mat-card class="producto-card">
+      <div class="header-container">
+        <div class="imagen-container">
+          <img [src]="producto.fotoBlob" alt="Imagen del producto">
+        </div>
+        <div class="datos-container">
+          <h2>{{ producto.nombre }}</h2>
+          <p><strong>Estado:</strong> {{ producto.estadoNombre }}</p>
+          <p><strong>Categoría:</strong> {{ producto.categoriaNombre }}</p>
+        </div>
+      </div>
+      <div class="atributos-container">
+        <div class="atributos-valores">
+          <h3>Atributos:</h3>
+          <div *ngFor="let atributo of atributosValores" class="atributo">
+            <p><strong>{{ atributo.nombreAtributo }}:</strong> {{ atributo.valor }}</p>
+          </div>
+        </div>
+        <div class="puntuacion-media">
+          <div  class="stars-media">
+            <div *ngFor="let star of stars">
+              <mat-icon *ngIf="star.id<=puntuacionMedia" class="gold-icon">star</mat-icon>
+              <mat-icon *ngIf="star.id>puntuacionMedia" class="gray-icon">star</mat-icon>
+            </div>
+          </div>
+          <p class="text-puntuacion-media">Puntuacion media {{ puntuacionMedia | number: '1.0-2' }} en {{numeroPuntuaciones}} puntuaciones</p>
+        </div>
+      </div>
+
+    </mat-card>
+    <mat-tab-group class="tab-comentarios-precios">
+      <mat-tab label="Comentarios">
+        <div class="comentarios">
+          <app-card-comentario class="comentario" *ngFor="let comentario of comentariospuntuaciones" [puntuacion]="comentario.puntuacion" [comentario]="comentario.comentario" [usuario]="comentario.usuario">
+          </app-card-comentario>
+          <button class="add-tab-button" *ngIf="!existeComentario()" (click)="addComentario()"
+          mat-fab color="primary" aria-label="Añadir nuevo comentaro">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Precios">
+        <div class="precios">
+          <app-card-precio class="precio" *ngFor="let precio of precios" [origen]="precio.origen" [precio]="precio.valor" [url]="precio.url">
+          </app-card-precio>
+          <button class="add-tab-button" (click)="addPrecio()"
+          mat-fab color="primary" aria-label="Añadir nuevo comentaro">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    
+
+
+  </div>
+

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title class="dialog-tittle">Añadir nuevo comentario</h1>
+<div class="dialog" mat-dialog-content>
+  <form [formGroup]="data.form">
+    <mat-form-field class="form-field">
+      <input matInput formControlName="puntuacion" placeholder="Puntúa del 1 al 5">
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <textarea matInput formControlName="comentario" placeholder="Comentario (máximo 150 caracteres)"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="onCancelClick()">Cancelar</button>
+  <button mat-button color="primary" [disabled]="data.form.invalid" (click)="onAcceptClick()">Aceptar</button>
+</div>

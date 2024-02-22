@@ -1,0 +1,29 @@
+.producto-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .imagen-container {
+    flex: 1;
+  }
+
+  .imagen-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .datos-container {
+    flex: 2;
+    margin-left: 20px;
+  }
+
+  .puntuacion-media {
+    margin-top: 30px;
+    margin-left:50px;
+  }

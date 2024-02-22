@@ -16,4 +16,13 @@ export class CategoriaService {
   obtenerCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.globals.URL+'/api/v1/categories');
   }
+
+  obtenerCategoriasId(id: number): Observable<Categoria> {
+    return this.http.get<Categoria>(this.globals.URL+'/api/v1/categories/'+id);
+  }
+
+  addNewCategory(categoria: Categoria): Observable<Categoria> {
+    return this.http.post<Categoria>(this.globals.URL+'/api/v1/categories', categoria);
+  }
+
 }

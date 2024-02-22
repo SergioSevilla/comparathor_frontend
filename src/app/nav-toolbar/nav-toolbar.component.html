@@ -14,7 +14,7 @@
     </mat-toolbar-row> 
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav class="matsidenav-container" [(opened)] = "opened" mode="side">
+  <mat-sidenav class="matsidenav-container"  [(opened)] = "opened" mode="side">
       <div class="sidenav">
         <mat-nav-list>
           <mat-list-item (click)="showMenuItems = !showMenuItems" class="parent">
@@ -25,7 +25,7 @@
           <div class="submenu" [ngClass]="{'expanded' : showMenuItems}" *ngIf="showMenuItems" >
             <a mat-list-item routerLink="/buscarproductos" (click)="opened=!opened">Buscar Productos</a>
             <a mat-list-item href="...">Mis Productos</a>
-            <a mat-list-item href="...">Añadir Producto</a>
+            <a mat-list-item routerLink="/crearproducto" (click)="opened=!opened">Añadir Producto</a>
           </div>
         </mat-nav-list>
         <mat-nav-list>
@@ -57,7 +57,8 @@
             <mat-icon class="menu-button" [ngClass]="{'rotated' : showMenuAdmin}">expand_more</mat-icon>
           </mat-list-item>
           <div class="submenu" [ngClass]="{'expanded' : showMenuAdmin}" *ngIf="showMenuAdmin" >
-            <a mat-list-item href="...">Validaciones</a>
+            <a mat-list-item routerLink="/validaciones" (click)="opened=!opened">Validaciones</a>
+            <a mat-list-item routerLink="/crearcategorias" (click)="opened=!opened">Crear Categorías</a>
             <a mat-list-item href="...">Usuarios</a>
             <a mat-list-item href="...">Proveedores</a>
           </div>

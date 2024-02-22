@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Globals } from '../globals';
+import { User } from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,18 @@ export class UsuarioService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    console.log("aquiiiiii "+this.globals.URL+'/api/v1/users/checkEmail?email='+email);
     return this.http.get(this.globals.URL+'/api/v1/users/checkEmail?email='+email,httpOptions).pipe(
       map(response => true), 
       catchError(error => of(false)) 
     );
+  }
+
+  obtenerUsuarios(): Observable<User[]> {
+    return this.http.get<User[]>(this.globals.URL+'/api/v1/users');
+  }
+
+  obtenerUsuariosPorId(id: number): Observable<User> {
+    return this.http.get<User>(this.globals.URL+'/api/v1/users/'+id);
   }
 
 }

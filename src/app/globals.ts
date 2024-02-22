@@ -8,6 +8,8 @@ export class Globals{
     SERVER = 'localhost';
     PORT = '8080';
     URL = 'http://'+this.SERVER+':'+this.PORT;
+    ESTADO : { PROVISIONAL : number, DEFINITIVO : number} = { PROVISIONAL : 1, DEFINITIVO : 2};
+    
 
     ISLOGGED = false;
 

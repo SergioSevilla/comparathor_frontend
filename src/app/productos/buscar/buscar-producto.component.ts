@@ -5,6 +5,12 @@ import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource } from
 import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
+import { Producto } from '../../entities/producto';
+import { ProductoService } from '../../services/producto.service';
+import { EstadoService } from '../../services/estado.service';
+import { Estado } from '../../entities/estado';
+import { Router } from '@angular/router';
+
 
 export class TreeNode {
   categoria: Categoria;
@@ -23,7 +29,8 @@ export class TreeFlatNode {
 @Injectable({ providedIn: "root" })
 export class ChecklistDatabase {
   dataChange = new BehaviorSubject<TreeNode[]>([]);
-  treeData: any[];
+  treeData: TreeNode[] = []
+
 
   get data(): TreeNode[] {
     return this.dataChange.value;
@@ -39,7 +46,7 @@ export class ChecklistDatabase {
           this.treeData = this.buildTree(categorias);
           this.initialize();
         } else {
-          console.error('La llamada a categoriaService.obtenerCategorias() devolvió undefined.');
+          console.error('La llamada al servicio devolvió undefined.');
         } 
       });
       this.initialize();  
@@ -123,8 +130,13 @@ export class BuscarProductoComponent implements OnInit{
   treeControl: FlatTreeControl<TreeFlatNode>;
   dataSource: MatTreeFlatDataSource<TreeNode, TreeFlatNode>;
 
+  productos : Producto[] = [];
+
+  textoBuscar: string = '';
+
   //constructor(private categoriaService: CategoriaService) { }
-  constructor(private _database: ChecklistDatabase) {
+  constructor(private _database: ChecklistDatabase, private productoService: ProductoService, private categoriaService: CategoriaService
+          ,private estadoService: EstadoService, private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -148,27 +160,9 @@ export class BuscarProductoComponent implements OnInit{
 
 
   ngOnInit(): void {
-    //this.obtenerCategorias();
   }
 
- /* obtenerCategorias(): void {
 
-    
-    this.categoriaService.obtenerCategorias()
-      .subscribe(categorias => {
-        // Transformar categorías planas en estructura de árbol
-        this.categorias = this.buildTree(categorias);
-        console.log("eeeo   " + this.categorias[0].categoria.nombre);
-        console.log("eeeo   " + this.categorias[1].categoria.nombre);
-        console.log("eeeo   " + this.categorias[2].categoria.nombre);
-        console.log("eeeo   " + this.categorias[3].categoria.nombre);
-        console.log("eeeo   " + this.categorias[4].categoria.nombre);
-        console.log("eeeo   " + this.categorias[4].categoria.nombre);
-        this.dataSource.data = this.categorias;
-      });
-  }
-*/
-  //hasChild = (_: number, node: TreeNode) => !!node.hijos && node.hijos.length > 0;
 
 
   getLevel = (node: TreeFlatNode) => node.level;
@@ -256,7 +250,7 @@ export class BuscarProductoComponent implements OnInit{
   }
 
   getParentNode(node: TreeFlatNode): TreeFlatNode | null {
-    console.log(this.checklistSelection.selected);
+  
     const currentLevel = this.getLevel(node);
   
     if (currentLevel < 1) {
@@ -282,7 +276,9 @@ export class BuscarProductoComponent implements OnInit{
   }
 
   descendantsAllSelected(node: TreeFlatNode): boolean {
-    console.log(node.categoria.nombre);
+    
+    if (!node) {console.log("!node"); return false;}
+    if (!this.treeControl) {console.log("!this.treeControl"); return false;}
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected = descendants.every(child =>
       this.checklistSelection.isSelected(child)
@@ -291,6 +287,7 @@ export class BuscarProductoComponent implements OnInit{
   }
 
   descendantsPartiallySelected(node: TreeFlatNode): boolean {
+    if (!node) return false;
     const descendants = this.treeControl.getDescendants(node);
     const result = descendants.some(child =>
       this.checklistSelection.isSelected(child)
@@ -298,4 +295,106 @@ export class BuscarProductoComponent implements OnInit{
     return result && !this.descendantsAllSelected(node);
   }
 
+  submitSearch() {
+    this.productos = [];
+
+    if (this.checklistSelection.selected.length == 0)
+    {
+      this.productoService.obtenerProductos().subscribe(
+        (productos: Producto[]) => {
+
+          this.productos = productos;
+          
+          this.productos.forEach((producto) => {
+              console.log(this.textoBuscar+" -> "+producto.nombre+" = "+producto.nombre.includes(this.textoBuscar));
+          });
+          console.log("antes "+this.productos.length );
+          if (this.textoBuscar != '') {
+            this.productos = this.productos.filter(producto => producto.nombre.includes(this.textoBuscar));
+          }
+          console.log("despues "+this.productos.length );
+          this.productos.forEach((producto) => {
+            this.categoriaService.obtenerCategoriasId(producto.categoria).subscribe(
+              (categoria: Categoria) => {
+                producto.categoriaNombre = categoria.nombre;
+              });
+            this.estadoService.obtenerEstadoPorId(producto.estado).subscribe(
+                (estado: Estado) => {
+                  producto.estadoNombre = estado.nombre;
+                });
+            if (producto.foto != null) 
+            {
+              this.productoService.obtenerFotoProducto(producto.id).subscribe(
+                foto => {
+                  producto.fotoBlob = URL.createObjectURL(foto);
+                  console.log(producto.fotoBlob);
+                },
+                error => {
+                  console.error('Error al obtener la foto del producto:', error);
+                  // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+                }
+              );
+            }
+            else {
+              producto.fotoBlob = "assets/images/sin_imagen.jpg"
+            }
+          })
+        },
+        error => {
+          console.error('Error al obtener productos:', error);
+          // Aquí puedes manejar el error como desees, por ejemplo, mostrando un mensaje al usuario
+        }
+      );
+    }
+    else {
+      this.checklistSelection.selected.forEach((node) => {
+        this.productoService.obtenerProductoPorCategoria(node.categoria.id).subscribe(
+          (productos: Producto[]) => {
+            if (this.textoBuscar != '') {
+              productos.filter(producto => producto.nombre.includes(this.textoBuscar))
+            }
+            this.productos.push(...productos);
+            this.productos.forEach((producto) => {
+              this.categoriaService.obtenerCategoriasId(producto.categoria).subscribe(
+                (categoria: Categoria) => {
+                  producto.categoriaNombre = categoria.nombre;
+                });
+
+              this.estadoService.obtenerEstadoPorId(producto.estado).subscribe(
+                  (estado: Estado) => {
+                    producto.estadoNombre = estado.nombre;
+                  });
+                  if (producto.foto != null) 
+            {
+              this.productoService.obtenerFotoProducto(producto.id).subscribe(
+                foto => {
+                  producto.fotoBlob = URL.createObjectURL(foto);
+                  console.log(producto.fotoBlob);
+                },
+                error => {
+                  console.error('Error al obtener la foto del producto:', error);
+                  // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+                }
+              );
+            }
+            else {
+              producto.fotoBlob = "assets/images/sin_imagen.jpg"
+            }
+            })
+            
+          },
+          error => {
+            console.error('Error al obtener productos:', error);
+            // Aquí puedes manejar el error como desees, por ejemplo, mostrando un mensaje al usuario
+          }
+        );
+      });
+    }
+
+    
+  }
+
+  verDetalle(producto: Producto): void {
+    this.router.navigate(['/producto'], { state: { producto } }); // Navega a la nueva ruta con el ID del producto
+  }
 }

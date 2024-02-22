@@ -1,31 +1,15 @@
-<form class="busqueda-producto-form">
-    <mat-form-field class="example-full-width" appearance="outline" floatlabel="always">
-        <input type="text"
-       placeholder="{{getSelectedItems()}}"
-       aria-label="Number"
-       matInput
-       [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option disabled>Please select an item from below</mat-option>
-            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-                <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-                    <button mat-icon-button disabled></button>
-                    <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
-                        (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
-                </mat-tree-node>
-                <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-                    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
-                        <mat-icon class="mat-icon-rtl-mirror"> 
-                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                        </mat-icon>
-                    </button>
-                    <mat-checkbox [checked]="descendantsAllSelected(node)"
-                        [indeterminate]="descendantsPartiallySelected(node)"
-                        (change)="todoItemSelectionToggle(node)">
-                        {{node.item}}
-                    </mat-checkbox>
-                </mat-tree-node>
-            </mat-tree>
-        </mat-autocomplete>
-    </mat-form-field>
-</form>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    @for (column of columns; track column) {
+      <ng-container [matColumnDef]="column.columnDef">
+        <th mat-header-cell *matHeaderCellDef>
+          {{column.header}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          hola marica {{column.cell(row)}}
+        </td>
+      </ng-container>
+    }
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
