@@ -1,15 +1,94 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-    @for (column of columns; track column) {
-      <ng-container [matColumnDef]="column.columnDef">
-        <th mat-header-cell *matHeaderCellDef>
-          {{column.header}}
-        </th>
-        <td mat-cell *matCellDef="let row">
-          hola marica {{column.cell(row)}}
-        </td>
-      </ng-container>
-    }
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+<div class="wrapper">
+    <div class="barra-comparativa">
+        <div class="productos-seleccionados">
+            <mat-card class="tarjeta-busqueda">
+                <mat-card-header class="cabecera-tarjeta">
+                  
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+                <mat-card-content class="contenido-tarjeta">
+                    <p>
+                        Este es el producto 1 hchhc cchhc
+                    </p>
+                    <button mat-icon-button color="warn">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+
+                </mat-card-content>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1 esto es un producto mas grande dsjdjs csjcjs </mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+              <mat-card>
+                <mat-card-header class="cabecera-tarjeta">
+                  <mat-card-title>Producto 1</mat-card-title>
+                  <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+                </mat-card-header>
+              </mat-card>
+        </div>
+        <button mat-button color="warn">Crear Comparación</button>
+    </div>
+</div>

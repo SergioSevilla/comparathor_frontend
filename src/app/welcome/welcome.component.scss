@@ -1,5 +1,65 @@
-.contenedor {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.wrapper {
+  margin-bottom: 70px; /* Margen inferior de 70px */
 }
+
+.barra-comparativa {
+  position: fixed; /* Fijar la barra al final de la página */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff; /* Color de fondo opcional */
+  padding: 10px; /* Espaciado interno opcional */
+  margin-bottom: 70px; 
+}
+
+.productos-seleccionados {
+  display: flex;
+  overflow-x: auto; /* Permitir desplazamiento horizontal */
+  gap: 10px; /* Espacio entre las tarjetas */
+  height: 150px; /* Altura de las tarjetas */
+  scrollbar-width: thin; /* Ancho del scrollbar */
+  scrollbar-color: #ccc #f0f0f0; /* Color del scrollbar */
+}
+
+.imagen_tarjeta{
+  width:70px;
+  height: 70px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.mat-card {
+  width: 300px; /* Anchura de las tarjetas */
+}
+
+button.mat-button {
+  position: absolute; /* Fijar el botón en la esquina derecha */
+  bottom: 10px;
+  right: 10px;
+}
+
+mat-card-title {
+  font-size: 18px; /* Puedes ajustar el tamaño de la fuente según lo necesites */
+}
+
+.contenido-tarjeta {
+  display:flex;
+  direction: row;
+  
+}
+
+//
+//.barra-comparativa {
+//  display:flex;
+//  direction: row;
+//  margin-bottom : 70px;
+//  background-color: #3fb55d; /* Color de fondo azul */
+//  color: white; /* Color de texto blanco */
+//  padding: 10px 0; /* Espaciado interior superior e inferior */
+//  text-align: center; /* Alinear el texto al centro */
+//  width: 100%; /* Ocupar todo el ancho de la pantalla */
+//  position: fixed; /* Fijar el footer en la parte inferior de la pantalla */
+//  bottom: 0; /* Colocar el footer en la parte inferior de la pantalla */
+//  left: 0; /* Alinear el footer a la izquierda de la pantalla */
+//  z-index: 1;
+//}

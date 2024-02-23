@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComparativasComponent } from './comparativas.component';
+import { MisComparativasComponent } from './mis-comparativas.component';
 
-describe('ComparativasComponent', () => {
-  let component: ComparativasComponent;
-  let fixture: ComponentFixture<ComparativasComponent>;
+describe('MisComparativasComponent', () => {
+  let component: MisComparativasComponent;
+  let fixture: ComponentFixture<MisComparativasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ComparativasComponent]
+      declarations: [MisComparativasComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ComparativasComponent);
+    fixture = TestBed.createComponent(MisComparativasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

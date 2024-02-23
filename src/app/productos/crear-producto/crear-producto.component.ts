@@ -80,9 +80,6 @@ export class CrearProductoComponent implements OnInit{
     const rootNodes: CategoriaTreeNode[] = [];
     const categoryMap = new Map<number, CategoriaTreeNode>();
   
-    this.atributoService.obtenerAtributoPorCategoria
-
-
     categorias.forEach(categoria => {
       
       const node: CategoriaTreeNode = {

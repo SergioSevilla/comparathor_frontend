@@ -17,7 +17,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { ComparativasComponent } from './comparativas/comparativas.component';
 import { SignupSuccessDialogComponent } from './dialogs/signup-success-dialog/signup-success-dialog.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
@@ -44,6 +43,9 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { VerProductoDialogComponent } from './dialogs/ver-producto-dialog/ver-producto-dialog.component';
 import { MisProductosComponent } from './productos/mis-productos/mis-productos.component';
+import { MisComparativasComponent } from './comparativas/mis-comparativas/mis-comparativas.component';
+import { CrearComparativaComponent } from './comparativas/crear-comparativa/crear-comparativa.component';
+import { CrearComparativaDialogComponent } from './dialogs/crear-comparativa-dialog/crear-comparativa-dialog.component';
 
 registerLocaleData(localeEs);
 
@@ -54,7 +56,6 @@ registerLocaleData(localeEs);
     FooterComponent,
     LoginComponent,
     SigninComponent,
-    ComparativasComponent,
     SignupSuccessDialogComponent,
     BuscarProductoComponent,
     WelcomeComponent,
@@ -69,6 +70,9 @@ registerLocaleData(localeEs);
     ValidacionesComponent,
     VerProductoDialogComponent,
     MisProductosComponent,
+    MisComparativasComponent,
+    CrearComparativaComponent,
+    CrearComparativaDialogComponent,
   ],
   imports: [
     BrowserModule,

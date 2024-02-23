@@ -24,7 +24,7 @@
           </mat-list-item>
           <div class="submenu" [ngClass]="{'expanded' : showMenuItems}" *ngIf="showMenuItems" >
             <a mat-list-item routerLink="/buscarproductos" (click)="opened=!opened">Buscar Productos</a>
-            <a mat-list-item href="...">Mis Productos</a>
+            <a mat-list-item routerLink="/buscarproductos" (click)="opened=!opened">Mis Productos</a>
             <a mat-list-item routerLink="/crearproducto" (click)="opened=!opened">Añadir Producto</a>
           </div>
         </mat-nav-list>
@@ -36,8 +36,8 @@
           </mat-list-item>
           <div class="submenu" [ngClass]="{'expanded' : showMenuComparisons}" *ngIf="showMenuComparisons" >
             <a mat-list-item href="...">Buscar Comparativas</a>
-            <a mat-list-item href="...">Mis Comparativas</a>
-            <a mat-list-item href="...">Crear Comparativa</a>
+            <a mat-list-item routerLink="/miscomparativa" (click)="opened=!opened">Mis Comparativas</a>
+            <a mat-list-item routerLink="/crearcomparativa" (click)="opened=!opened">Crear Comparativa</a>
           </div>
         </mat-nav-list>
         <mat-nav-list>

@@ -177,7 +177,6 @@ export class VerProductoComponent {
 
 
     addComentario() {
-      console.log("pulsado Comentario!");
       const dialogRef = this.dialog.open(ComentarioDialogComponent, {
         width: '600px',
         data: { form: this.formComentario }

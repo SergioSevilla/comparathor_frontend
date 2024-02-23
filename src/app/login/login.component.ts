@@ -35,7 +35,7 @@ export class LoginComponent {
       this.authService.login(this.credentials).subscribe((token) => {
         if (token!='Error') {
           localStorage.setItem('token', token);
-          this.router.navigate(['/comparativas'])
+          this.router.navigate(['/miscomparativas'])
         } else {
           this.displayError = true;
         }

@@ -1,0 +1,74 @@
+<div class="crear-comparativa">
+    <div class="seleccion-categoria">
+        <h2>Seleccione categoría</h2>  
+        <mat-form-field>
+            <input type="text"
+           placeholder="{{getSelectedItems()}}"
+           aria-label="Number"
+           matInput
+           [matAutocomplete]="auto">
+           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option disabled>Selecciona una Categoría</mat-option>
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+              <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+                <mat-checkbox *ngIf="node.hasAtributos" [checked]="node === selectedNode" class="checklist-leaf-node" (change)="onNodeSelected(node)">
+                  {{ node.nombre }}
+                </mat-checkbox>
+                <div *ngIf="!node.hasAtributos">{{ node.nombre }}</div>
+              </mat-tree-node>
+              <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                <div class="mat-tree-node">
+                  <button mat-icon-button matTreeNodeToggle
+                          [attr.aria-label]="'Toggle ' + node.nombre">
+                    <mat-icon class="mat-icon-rtl-mirror">
+                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                    </mat-icon>
+                  </button>
+        
+                  <mat-checkbox *ngIf="node.hasAtributos" [checked]="node === selectedNode" class="checklist-leaf-node" (change)="onNodeSelected(node)">
+                    {{ node.nombre }}
+                  </mat-checkbox>
+                  <div *ngIf="!node.hasAtributos">{{ node.nombre }}</div>
+                </div>
+                <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+                    role="group">
+                  <ng-container matTreeNodeOutlet></ng-container>
+              </div>
+            </mat-nested-tree-node>
+          </mat-tree>
+          </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div *ngIf="productos.length > 0" class="productos-container">
+        <mat-card *ngFor="let producto of productos">
+          <mat-card-header>
+            <mat-card-title>{{ producto.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ producto.categoriaNombre }}</mat-card-subtitle>
+            <img class="imagen-tarjeta-busqueda" mat-card-md-image [src]="producto.fotoBlob">
+          </mat-card-header>
+          <mat-card-content>
+            <p>Estado: {{producto.estadoNombre }}</p>
+            <p><mat-checkbox [checked]="isSelected(producto)" (change)="onProductoSelect(producto)">Crear Comparación</mat-checkbox>
+            </p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div class="wrapper" *ngIf="productosSeleccionados.length > 0">
+    <div class="barra-comparativa">
+        <div class="productos-seleccionados">
+            <mat-card *ngFor="let productoSeleccionado of productosSeleccionados" class="tarjeta-seleccion">
+                <mat-card-header class="cabecera-tarjeta">
+                    <img class="imagen-tarjeta-seleccion" mat-card-md-image [src]="productoSeleccionado.fotoBlob">
+                </mat-card-header>
+                <mat-card-content class="contenido-tarjeta">
+                    <p>{{productoSeleccionado.nombre}}</p>
+                    <button mat-icon-button color="warn" (click)="deseleccionar(productoSeleccionado)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <button mat-button color="warn" (click)="crearComparacion()">Crear Comparación</button>
+    </div>
+</div>

@@ -30,37 +30,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class WelcomeComponent {
 
 
-
 constructor() {
 
   }  
 
 
   
-  columns = [
-    {
-      columnDef: 'accion',
-      header: 'Acciones',
-      cell: (element: PeriodicElement) => `${element.position}`,
-    },
-    {
-      columnDef: 'nombre',
-      header: 'Nombre Producto',
-      cell: (element: PeriodicElement) => `${element.name}`,
-    },
-    {
-      columnDef: 'usuario',
-      header: 'Usuario',
-      cell: (element: PeriodicElement) => `${element.weight}`,
-    },
-    {
-      columnDef: 'Fecha de Creacion',
-      header: 'fecha',
-      cell: (element: PeriodicElement) => `${element.symbol}`,
-    },
-  ];
-  dataSource = ELEMENT_DATA;
-  displayedColumns = this.columns.map(c => c.columnDef);
 }
 
 

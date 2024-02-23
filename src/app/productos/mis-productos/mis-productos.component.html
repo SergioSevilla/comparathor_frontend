@@ -1,1 +1,28 @@
-<p>mis-productos works!</p>
+<div class="mis-productos">
+    <h2>Tus productos en estado Definitivo:</h2>
+    <div *ngIf="productosDefinitivos.length > 0" class="productos-container">
+        <mat-card *ngFor="let producto of productosDefinitivos" (click)="verDetalle(producto)">
+          <mat-card-header>
+            <mat-card-title>{{ producto.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ producto.categoriaNombre }}</mat-card-subtitle>
+            <img class="imagen_tarjeta" mat-card-md-image [src]="producto.fotoBlob">
+          </mat-card-header>
+          <mat-card-content>
+            <p>Estado: {{producto.estadoNombre }}</p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+    <h2>Tus productos en estado Provisional:</h2>
+    <div *ngIf="productosProvisionales.length > 0" class="productos-container">
+        <mat-card *ngFor="let producto of productosProvisionales" (click)="verDetalle(producto)">
+          <mat-card-header>
+            <mat-card-title>{{ producto.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ producto.categoriaNombre }}</mat-card-subtitle>
+            <img class="imagen_tarjeta" mat-card-md-image [src]="producto.fotoBlob">
+          </mat-card-header>
+          <mat-card-content>
+            <p>Estado: {{producto.estadoNombre }}</p>
+          </mat-card-content>
+        </mat-card>
+    </div>
+</div>
