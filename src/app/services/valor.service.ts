@@ -24,7 +24,6 @@ export class ValorService {
       atributo: { id: idAtributo }, 
       producto: { id: idProducto}, 
       valor: valorAtr };
-    console.log(valorREST);
     return this.http.post<Valor>(this.globals.URL+'/api/v1/values', valorREST);
   
   }

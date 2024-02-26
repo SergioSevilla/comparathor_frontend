@@ -1,0 +1,26 @@
+<h2>{{ comparativa.nombre }}</h2>
+
+<table mat-table [dataSource]="productoValores" class="mat-elevation-z8">
+
+    <!-- Definir las columnas -->
+    <ng-container *ngFor="let columna of columnas; let i = index" [matColumnDef]="columna">
+      <th mat-header-cell *matHeaderCellDef>{{ columna }}</th>
+      <td mat-cell *matCellDef="let productoValor">
+        <ng-container *ngIf="i === 0">
+            <div class="tabla-producto">
+                <img class="imagen_tarjeta" [src]="productoValor.producto.fotoBlob">
+                <div *ngIf="productoValor.puntuacion >= 0">
+                    <app-estrellas  [puntuacion]="productoValor.puntuacion"></app-estrellas>
+                    <h4>{{ productoValor.puntuacion }}</h4>
+                </div>
+                <h4>{{ productoValor.producto.nombre }}</h4>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="i > 0">{{ productoValor.valores[i - 1] }}</ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  
+</table>

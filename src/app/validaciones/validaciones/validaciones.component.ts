@@ -41,8 +41,6 @@ export class ValidacionesComponent {
   }
 
   validar(produtoId:number): void {
-    // Lógica para validar
-    console.log('Validar');
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
       data: '¿Está seguro que desea validar el producto ?'

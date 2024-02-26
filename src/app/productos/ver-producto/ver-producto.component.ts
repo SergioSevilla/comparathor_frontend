@@ -67,7 +67,6 @@ export class VerProductoComponent {
 
       this.obtenerDetalleProducto();
       this.usuarioService.obtenerUsuarios().subscribe((usuarios) => {
-        console.log("nombreeeee:  "+usuarios[0].nombre);
         this.usuarioActual = usuarios[0];
       })
       this.comentarioService.obtenerComentariosPorProductoId(this.producto.id).subscribe((comentarios) => {
@@ -167,10 +166,8 @@ export class VerProductoComponent {
       let existe = this.comentarios.find((comentario) => comentario.usuario == this.usuarioActual.id);
       
       if (existe) {
-        console.log("existe");
         return true; }
         else {
-          console.log("no existe");
           return false;
         }
     }
@@ -183,7 +180,7 @@ export class VerProductoComponent {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('El dialogo se cerró con:', result);
+
         if (result) {
           this.comentarioService.addNewComentario(result.comentario,this.producto.id).subscribe((resultComentario) => {
             if (resultComentario) {
@@ -208,7 +205,7 @@ export class VerProductoComponent {
     }
 
     addPrecio() {
-      console.log("pulsado Precios!");
+
     }
 
 }

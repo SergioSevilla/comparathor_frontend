@@ -68,7 +68,7 @@ export class ProductoService {
     {
       nombre : producto.nombre, categoria: {id : producto.categoria}, estado : {id:2}
     };
-    console.log(productoAux);
+
 
     return this.http.put<Producto>(this.globals.URL+'/api/v1/items/'+producto.id,productoAux);
   }

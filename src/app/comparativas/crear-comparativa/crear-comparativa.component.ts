@@ -34,7 +34,7 @@ export class CrearComparativaComponent implements OnInit {
 
   formCrear: FormGroup;
 
-  //constructor(private categoriaService: CategoriaService) { }
+
   constructor( private productoService: ProductoService, private categoriaService: CategoriaService
     ,private estadoService: EstadoService, private atributoService: AtributoService, private fbCrearComparativa: FormBuilder, private dialog: MatDialog,
     private comparativaService:ComparativaService) {
@@ -117,11 +117,9 @@ export class CrearComparativaComponent implements OnInit {
               this.productoService.obtenerFotoProducto(producto.id).subscribe(
                 foto => {
                   producto.fotoBlob = URL.createObjectURL(foto);
-                  console.log(producto.fotoBlob);
                 },
                 error => {
                   console.error('Error al obtener la foto del producto:', error);
-                  // Manejar el error, por ejemplo, mostrar un mensaje al usuario
                 }
               );
             }
@@ -148,8 +146,6 @@ export class CrearComparativaComponent implements OnInit {
     else {
       this.productosSeleccionados.push(producto);
     }
-    console.log("Productos seleccionados:");
-    console.log(this.productosSeleccionados);
   }
 
   deseleccionar(producto: Producto) {
@@ -163,12 +159,12 @@ export class CrearComparativaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El dialogo se cerró con:', result);
+
       if (result) {
         this.comparativaService.addComparativa(result.nombre).subscribe((comparativa) => {
           this.comparativaService.addComparativaProductos(comparativa.id,this.productosSeleccionados).subscribe((comparativa) => {
             if (comparativa){
-              console.log("creado ok");
+
             }
           })
         })

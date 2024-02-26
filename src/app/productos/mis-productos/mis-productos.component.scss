@@ -8,25 +8,25 @@
 .productos-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly; // Para distribuir el espacio entre las tarjetas
+    justify-content: space-evenly; 
     padding: 20px;
   }
 
   mat-card {
-    width: calc(33.33% - 20px); // Tamaño de cada tarjeta, puedes ajustar según tu preferencia
+    width: calc(33.33% - 20px); 
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra para resaltar las tarjetas
-    transition: box-shadow 0.3s ease; // Efecto de transición suave para la sombra
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease; 
   }
   
   mat-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Aumentar la sombra al pasar el ratón
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
   }
   
   mat-card-header {
     display: flex;
     align-items: center;
-    padding: 8px 16px; // Ajustar el relleno del encabezado de la tarjeta
+    padding: 8px 16px; 
   }
   
   mat-card-title {
@@ -36,19 +36,19 @@
   }
   
   mat-card-content {
-    padding: 8px 16px; // Ajustar el relleno del contenido de la tarjeta
+    padding: 8px 16px; 
   }
   
   mat-card-actions {
     display: flex;
-    justify-content: flex-end; // Alinear los botones al final de la tarjeta
-    padding: 8px 16px; // Ajustar el relleno de las acciones de la tarjeta
+    justify-content: flex-end; 
+    padding: 8px 16px; 
   }
   
   .imagen_tarjeta{
-    margin-left: auto; // Coloca la imagen al final del contenedor
+    margin-left: auto; 
     height: auto;
-    margin-right: 10px; // Espacio entre la imagen y el título
+    margin-right: 10px; 
   }
 
   h2 {

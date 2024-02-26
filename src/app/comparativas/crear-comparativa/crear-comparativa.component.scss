@@ -11,32 +11,32 @@
 .productos-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; // Para distribuir el espacio entre las tarjetas
+  justify-content: space-evenly; 
   padding: 20px;
 }
 
 mat-card {
-  width: calc(33.33% - 20px); // Tamaño de cada tarjeta, puedes ajustar según tu preferencia
+  width: calc(33.33% - 20px); 
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra para resaltar las tarjetas
-  transition: box-shadow 0.3s ease; // Efecto de transición suave para la sombra
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease; 
 }
 
 .tarjeta-seleccion{
-    width: calc(12% - 20px); // Tamaño de cada tarjeta, puedes ajustar según tu preferencia
+    width: calc(12% - 20px); 
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra para resaltar las tarjetas
-    transition: box-shadow 0.3s ease; // Efecto de transición suave para la sombra
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease; 
 }
 
 mat-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Aumentar la sombra al pasar el ratón
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
 mat-card-header {
   display: flex;
   align-items: center;
-  padding: 8px 16px; // Ajustar el relleno del encabezado de la tarjeta
+  padding: 8px 16px; 
 }
 
 mat-card-title {
@@ -46,36 +46,36 @@ mat-card-title {
 }
 
 mat-card-content {
-  padding: 8px 16px; // Ajustar el relleno del contenido de la tarjeta
+  padding: 8px 16px; 
 }
 
 mat-card-actions {
   display: flex;
-  justify-content: flex-end; // Alinear los botones al final de la tarjeta
-  padding: 8px 16px; // Ajustar el relleno de las acciones de la tarjeta
+  justify-content: flex-end; 
+  padding: 8px 16px; 
 }
 
 .imagen-tarjeta-busqueda{
-  margin-left: auto; // Coloca la imagen al final del contenedor
+  margin-left: auto; 
   height: auto;
-  margin-right: 10px; // Espacio entre la imagen y el título
+  margin-right: 10px; 
 }
 
-// Media query para dispositivos más pequeños
+
 @media (max-width: 768px) {
   .productos-container {
-    justify-content: center; // Centrar las tarjetas en dispositivos pequeños
+    justify-content: center; 
   }
 
   mat-card {
-    width: calc(50% - 20px); // Dos tarjetas por fila en dispositivos pequeños
+    width: calc(50% - 20px); 
   }
 }
 
-// Media query para dispositivos aún más pequeños
+
 @media (max-width: 480px) {
   mat-card {
-    width: calc(100% - 20px); // Una tarjeta por fila en dispositivos muy pequeños
+    width: calc(100% - 20px); 
   }
 }
 
@@ -83,11 +83,7 @@ mat-card-actions {
   padding-left: 40px;
 }
 
-/*
- * Padding for leaf nodes.
- * Leaf nodes need to have padding so as to align with other non-leaf nodes
- * under the same parent.
- */
+
 .example-tree div[role=group] > .mat-tree-node {
   padding-left: 40px;
 }
@@ -126,7 +122,7 @@ mat-card-actions {
   }
 
   input.mat-input {
-    height: 36px; // Ajusta este valor según tu preferencia
+    height: 36px; 
   }
 
 
@@ -166,22 +162,22 @@ h2 {
   }
 
   .barra-comparativa {
-    position: fixed; /* Fijar la barra al final de la página */
+    position: fixed; 
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #fff; /* Color de fondo opcional */
-    padding: 10px; /* Espaciado interno opcional */
+    background-color: #fff; 
+    padding: 10px; 
     margin-bottom: 70px; 
   }
 
   .productos-seleccionados {
     display: flex;
-    overflow-x: auto; /* Permitir desplazamiento horizontal */
-    gap: 10px; /* Espacio entre las tarjetas */
-    height: 150px; /* Altura de las tarjetas */
-    scrollbar-width: thin; /* Ancho del scrollbar */
-    scrollbar-color: #ccc #f0f0f0; /* Color del scrollbar */
+    overflow-x: auto; 
+    gap: 10px; 
+    height: 150px; 
+    scrollbar-width: thin; 
+    scrollbar-color: #ccc #f0f0f0; 
   }
 
   .imagen-tarjeta-seleccion{

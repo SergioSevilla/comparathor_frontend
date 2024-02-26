@@ -40,7 +40,6 @@ export class SigninComponent {
       this.user.nombre = this.signinForm.controls['name'].value;
       this.user.password = this.signinForm.controls['password'].value;
       this.user.email = this.signinForm.controls['email'].value;
-      console.log(this.user);
       this.usuarioService.createUser(this.user)
         .subscribe(
           (response) => {
@@ -61,7 +60,6 @@ export class SigninComponent {
   
     dialogRef.afterClosed().subscribe(result => {
       
-      console.log('Dialog cerrado', result);
     });
   }
 

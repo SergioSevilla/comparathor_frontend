@@ -11,6 +11,7 @@ import { ValidacionesComponent } from './validaciones/validaciones/validaciones.
 import { MisProductosComponent } from './productos/mis-productos/mis-productos.component';
 import { CrearComparativaComponent } from './comparativas/crear-comparativa/crear-comparativa.component';
 import { MisComparativasComponent } from './comparativas/mis-comparativas/mis-comparativas.component';
+import { VerComparativaComponent } from './comparativas/ver-comparativa/ver-comparativa.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'miscomparativas',
     component: MisComparativasComponent
+  },
+  {
+    path: 'vercomparativa',
+    component: VerComparativaComponent
   },
   {
     path: 'welcome',

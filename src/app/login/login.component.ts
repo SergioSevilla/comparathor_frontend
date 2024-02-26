@@ -26,8 +26,10 @@ export class LoginComponent {
   }
 
   submitLogin(){
+
     if (this.loginForm.valid)
     {
+      
       this.displayError = false;
       this.submitFlag = true;
       this.credentials.email = this.loginForm.controls.email.value;

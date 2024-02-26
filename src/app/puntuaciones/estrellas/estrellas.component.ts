@@ -39,9 +39,8 @@ export class EstrellasComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log("entra en init con valor "+this.puntuacion);
     this.selectedRating = this.puntuacion;
-    //this.selectStar(this.selectedRating);
+
   }
 
   selectStar(value: number): void{

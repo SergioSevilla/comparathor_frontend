@@ -9,6 +9,7 @@ import { Producto } from '../entities/producto';
   providedIn: 'root'
 })
 export class ComparativaService {
+
  
 
   private globals = new Globals;
@@ -24,5 +25,13 @@ export class ComparativaService {
     let body : {id: number} [] = [];
     productosSeleccionados.forEach((producto) => body.push({id : producto.id}));
     return this.http.post<Comparativa>(this.globals.URL+'/api/v1/comparisons/'+comparativaId+'/items', body);
+  }
+
+  getComparativasPorUsuario():Observable<Comparativa[]> {
+    return this.http.get<Comparativa[]>(this.globals.URL+'/api/v1/comparisons');
+  }
+
+  getProductoPorComparativa(comparativaId: number):Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.globals.URL+'/api/v1/comparisons/'+comparativaId+'/items');
   }
 }

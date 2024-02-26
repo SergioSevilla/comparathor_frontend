@@ -40,9 +40,9 @@ export class ChecklistDatabase {
 
     this.categoriaService.obtenerCategorias()
       .subscribe(categorias => {
-        // Transformar categorías planas en estructura de árbol
-        if (categorias) { // Verifica que categorias no sea undefined
-          // Transformar categorías planas en estructura de árbol
+
+        if (categorias) { 
+
           this.treeData = this.buildTree(categorias);
           this.initialize();
         } else {
@@ -73,14 +73,14 @@ export class ChecklistDatabase {
 
     const data = this.treeData
 
-    // Notify the change.
+
     this.dataChange.next(data);
   }
 
   public filter(filterText: string) {
     let filteredTreeData;
     if (filterText) {
-      // Filter the tree
+
       function filter(array: any[], text: string) {
         const getChildren = (result: any[], object: { item: string; children: any[]; }) => {
           if (object.item .toLowerCase() === text.toLowerCase() ) {
@@ -99,14 +99,13 @@ export class ChecklistDatabase {
 
       filteredTreeData = filter(this.treeData, filterText);
     } else {
-      // Return the initial tree
+
       filteredTreeData = this.treeData;
     }
 
-    // Build the tree nodes from Json object. The result is a list of `TodoItemNode` with nested
-    // file node as children.
+
     const data = filteredTreeData;
-    // Notify the change.
+
     this.dataChange.next(data);
   }
 }
@@ -120,8 +119,7 @@ export class ChecklistDatabase {
 export class BuscarProductoComponent implements OnInit{
 
   categorias: TreeNode[] = [];
-  //treeControl = new NestedTreeControl<TreeNode>(node => node.hijos);
-  //dataSource = new MatTreeNestedDataSource<TreeNode>();
+
 
   checklistSelection = new SelectionModel<TreeFlatNode>(true /* multiple */);
   nestedNodeMap = new Map<TreeNode, TreeFlatNode>();
@@ -134,7 +132,7 @@ export class BuscarProductoComponent implements OnInit{
 
   textoBuscar: string = '';
 
-  //constructor(private categoriaService: CategoriaService) { }
+
   constructor(private _database: ChecklistDatabase, private productoService: ProductoService, private categoriaService: CategoriaService
           ,private estadoService: EstadoService, private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
@@ -216,7 +214,7 @@ export class BuscarProductoComponent implements OnInit{
       ? this.checklistSelection.select(...descendants)
       : this.checklistSelection.deselect(...descendants);
   
-    // Force update for the parent
+
     descendants.every(child => this.checklistSelection.isSelected(child));
     this.checkAllParentsSelection(node);
   }
@@ -277,8 +275,8 @@ export class BuscarProductoComponent implements OnInit{
 
   descendantsAllSelected(node: TreeFlatNode): boolean {
     
-    if (!node) {console.log("!node"); return false;}
-    if (!this.treeControl) {console.log("!this.treeControl"); return false;}
+    if (!node) { return false;}
+    if (!this.treeControl) { return false;}
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected = descendants.every(child =>
       this.checklistSelection.isSelected(child)
@@ -305,14 +303,12 @@ export class BuscarProductoComponent implements OnInit{
 
           this.productos = productos;
           
-          this.productos.forEach((producto) => {
-              console.log(this.textoBuscar+" -> "+producto.nombre+" = "+producto.nombre.includes(this.textoBuscar));
-          });
-          console.log("antes "+this.productos.length );
+
+
           if (this.textoBuscar != '') {
             this.productos = this.productos.filter(producto => producto.nombre.includes(this.textoBuscar));
           }
-          console.log("despues "+this.productos.length );
+
           this.productos.forEach((producto) => {
             this.categoriaService.obtenerCategoriasId(producto.categoria).subscribe(
               (categoria: Categoria) => {
@@ -327,11 +323,10 @@ export class BuscarProductoComponent implements OnInit{
               this.productoService.obtenerFotoProducto(producto.id).subscribe(
                 foto => {
                   producto.fotoBlob = URL.createObjectURL(foto);
-                  console.log(producto.fotoBlob);
+
                 },
                 error => {
                   console.error('Error al obtener la foto del producto:', error);
-                  // Manejar el error, por ejemplo, mostrar un mensaje al usuario
                 }
               );
             }
@@ -342,7 +337,6 @@ export class BuscarProductoComponent implements OnInit{
         },
         error => {
           console.error('Error al obtener productos:', error);
-          // Aquí puedes manejar el error como desees, por ejemplo, mostrando un mensaje al usuario
         }
       );
     }
@@ -364,28 +358,28 @@ export class BuscarProductoComponent implements OnInit{
                   (estado: Estado) => {
                     producto.estadoNombre = estado.nombre;
                   });
-                  if (producto.foto != null) 
-            {
-              this.productoService.obtenerFotoProducto(producto.id).subscribe(
+              if (producto.foto != null) 
+              {
+                this.productoService.obtenerFotoProducto(producto.id).subscribe(
                 foto => {
                   producto.fotoBlob = URL.createObjectURL(foto);
-                  console.log(producto.fotoBlob);
+
                 },
                 error => {
                   console.error('Error al obtener la foto del producto:', error);
-                  // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+
                 }
-              );
-            }
-            else {
-              producto.fotoBlob = "assets/images/sin_imagen.jpg"
-            }
+                );
+              }
+              else {
+                producto.fotoBlob = "assets/images/sin_imagen.jpg"
+              }
             })
             
           },
           error => {
             console.error('Error al obtener productos:', error);
-            // Aquí puedes manejar el error como desees, por ejemplo, mostrando un mensaje al usuario
+
           }
         );
       });
@@ -395,6 +389,6 @@ export class BuscarProductoComponent implements OnInit{
   }
 
   verDetalle(producto: Producto): void {
-    this.router.navigate(['/producto'], { state: { producto } }); // Navega a la nueva ruta con el ID del producto
+    this.router.navigate(['/producto'], { state: { producto } }); 
   }
 }

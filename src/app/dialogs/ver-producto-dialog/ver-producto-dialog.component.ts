@@ -33,7 +33,7 @@ export class VerProductoDialogComponent {
               },
               error => {
                 console.error('Error al obtener la foto del producto:', error);
-                // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+
               }
             );
           }
@@ -54,10 +54,8 @@ export class VerProductoDialogComponent {
             }
           })
           this.atributoService.obtenerAtributoPorProducto(this.producto.id).subscribe((atributos) => {
-            console.log("aqui");
             this.atributos = atributos;
             this.valorService.obtenerValorPorProducto(this.producto.id).subscribe((valores) => {
-              console.log("aqui2");
               this.valores = valores;
               this.joinAtributosValores(this.atributos,this.valores);
             })

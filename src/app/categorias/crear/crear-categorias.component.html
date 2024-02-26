@@ -1,6 +1,6 @@
 <div class="crear-categoria">
   <mat-card class="arbol-categoria">
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="seccion-tree">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         <mat-checkbox [checked]="node === selectedNode" (change)="onNodeSelected(node)">
           {{ node.nombre }}
@@ -32,7 +32,7 @@
             </mat-checkbox>
             <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
           </div>
-          <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+          <div [class.seccion-tree-invisible]="!treeControl.isExpanded(node)"
               role="group">
             <ng-container matTreeNodeOutlet></ng-container>
         </div>

@@ -44,7 +44,6 @@ export class CrearCategoriasComponent implements OnInit {
     const rootNodes: CategoriaTreeNode[] = [];
     const categoryMap = new Map<number, CategoriaTreeNode>();
   
-    // Agregar el nodo raíz
     const rootNode: CategoriaTreeNode = {
       id: null,
       nombre: 'Root',
@@ -85,7 +84,6 @@ export class CrearCategoriasComponent implements OnInit {
   }
 
   hasNoContent (_: number, node: CategoriaTreeNode): boolean {
-    console.log("hasnocontent  "+node.nombre);
     return node.nombre === "";
   }
 
@@ -109,7 +107,6 @@ export class CrearCategoriasComponent implements OnInit {
   }
 
   saveNode(node: CategoriaTreeNode, itemValue: string) {
-    console.log(node.id + "Salvamos! -> " +node.nombre );
     let categoria : Categoria = new Categoria();
     categoria.nombre = itemValue;
     categoria.parentId =node.parentId;
@@ -123,7 +120,6 @@ export class CrearCategoriasComponent implements OnInit {
       if (result) {
         this.categoriaService.addNewCategory(categoria).subscribe(
           (res) => {
-            console.log('Categoría añadida exitosamente:', res);
             this.categoriaService.obtenerCategorias().subscribe(categorias => {
               this.categorias = categorias;
               this.treeData = this.generateTreeData(categorias);
@@ -132,13 +128,12 @@ export class CrearCategoriasComponent implements OnInit {
           },
           (error) => {
             console.error('Error al agregar categoría:', error);
-            // Maneja el error de acuerdo a tus necesidades
           }
         );
         let nodeSearch = this.buscarNodo(node.id,this.dataSource.data[0]);
-          if (nodeSearch) this.expandAddAll(nodeSearch); // Llama al método para agregar la nueva categoría si el usuario confirma
+          if (nodeSearch) this.expandAddAll(nodeSearch); 
       } else {
-        console.log('El usuario canceló la acción.');
+
       }
     });
     
@@ -208,7 +203,6 @@ export class CrearCategoriasComponent implements OnInit {
   }
 
   changeShowAttr() {
-    console.log(this.newattrshow);
     this.newattrshow = !this.newattrshow;
   }
 
@@ -230,19 +224,18 @@ export class CrearCategoriasComponent implements OnInit {
       if (result) {
         this.atributoService.addNewAttr(categoriaid, valor).subscribe(
           (res) => {
-            console.log('Atributo añadido exitosamente:', res);
+
             this.atributoService.obtenerAtributoPorCategoria(categoriaid).subscribe( atributos => {
               this.atributos = atributos;
             });
           },
           (error) => {
             console.error('Error al agregar atributo:', error);
-            // Maneja el error de acuerdo a tus necesidades
           }
         );
       
       } else {
-        console.log('El usuario canceló la acción.');
+
       }
     });
 

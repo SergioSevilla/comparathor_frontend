@@ -46,6 +46,13 @@ import { MisProductosComponent } from './productos/mis-productos/mis-productos.c
 import { MisComparativasComponent } from './comparativas/mis-comparativas/mis-comparativas.component';
 import { CrearComparativaComponent } from './comparativas/crear-comparativa/crear-comparativa.component';
 import { CrearComparativaDialogComponent } from './dialogs/crear-comparativa-dialog/crear-comparativa-dialog.component';
+import { VerComparativaComponent } from './comparativas/ver-comparativa/ver-comparativa.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+
+
+
+
 
 registerLocaleData(localeEs);
 
@@ -73,6 +80,7 @@ registerLocaleData(localeEs);
     MisComparativasComponent,
     CrearComparativaComponent,
     CrearComparativaDialogComponent,
+    VerComparativaComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +104,13 @@ registerLocaleData(localeEs);
     MatAutocompleteModule,
     FormsModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatSliderModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    SlickCarouselModule
   ],
   providers: [
     provideClientHydration(),

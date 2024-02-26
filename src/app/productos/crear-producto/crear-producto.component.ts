@@ -40,7 +40,7 @@ export class CrearProductoComponent implements OnInit{
   fileFoto : File;
 
 
-  //constructor(private categoriaService: CategoriaService) { }
+
   constructor( private productoService: ProductoService, private categoriaService: CategoriaService
           ,private estadoService: EstadoService, private atributoService: AtributoService, private valorService : ValorService ,
            private fb: FormBuilder, private dialog: MatDialog) {
@@ -150,9 +150,7 @@ export class CrearProductoComponent implements OnInit{
   }
 
   handleDrop(files: FileList | undefined): void {
-    this.console.log("ahora aqui");
     if (files && files.length > 0) {
-      this.console.log("y ahora aqui");
       const file = files[0];
       this.fileFoto = files[0];
       this.newProductForm.patchValue({
@@ -219,19 +217,19 @@ export class CrearProductoComponent implements OnInit{
               producto.nombre=this.newProductForm.controls['productName'].value;
               producto.categoria = this.selectedNode.id;
               this.productoService.addProducto(producto,producto.categoria).subscribe((producto) => {
-                this.console.log("Producto agregado");
+
                 const attributesArray = this.newProductForm.get('attributes') as FormArray;
                 for (var i=0; i<attributesArray.length;i++)
                 {
                   if (attributesArray.at(i).value!=''){
                     this.valorService.addValor(this.atributos[i].id,producto.id,attributesArray.at(i).value ).subscribe((valor) => {
-                      this.console.log("Atributo "+this.atributos[i].nombre+" = "+valor.valor+" agregado");
+
                     })
                   }
                 }
                 if (this.fileFoto) {
                   this.productoService.addFoto(producto.id,this.fileFoto).subscribe((productoFoto) => {
-                    this.console.log("foto agregada");
+
                   }) 
                 }
               })
@@ -243,7 +241,7 @@ export class CrearProductoComponent implements OnInit{
 
      
     } else {
-      // Manejar errores de validación si es necesario
+
     }
     
   }

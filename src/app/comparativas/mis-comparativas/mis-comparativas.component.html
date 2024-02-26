@@ -1,1 +1,11 @@
-<p>mis-comparativas works!</p>
+<div class="mis-comparativas">
+    <h2>Tus comparativas guardadas:</h2>
+    <div *ngIf="comparativas.length > 0" class="comparativas-container">
+        <mat-card *ngFor="let comparativa of comparativas" (click)="verDetalle(comparativa)">
+          <mat-card-header>
+            <mat-card-title>{{ comparativa.nombre }}</mat-card-title>
+            <img class="imagen_tarjeta" mat-card-md-image src="assets/images/sin_imagen.jpg">
+          </mat-card-header>
+        </mat-card>
+    </div>
+</div>

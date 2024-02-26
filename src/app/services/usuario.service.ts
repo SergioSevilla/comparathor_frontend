@@ -17,7 +17,7 @@ export class UsuarioService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    console.log(user);
+
     return this.http.post<any>(this.globals.URL+'/api/v1/users/create',user, httpOptions)
     .pipe(
       catchError((error) => {
